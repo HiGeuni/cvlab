@@ -6,12 +6,12 @@ export interface themeStyle {
 
 export const AMStyle: themeStyle = {
   color: '#463635',
-  btnBgColor: '#53A453',
-  bgUrl: '../../public/am.png',
+  btnBgColor: '#53a453',
+  bgUrl: '/am.png',
 };
 
 export const PMStyle: themeStyle = {
-  color: 'white',
-  btnBgColor: '#CEE18E',
-  bgUrl: '../../public/pm.png',
+  color: '#ffffff',
+  btnBgColor: '#cee18e',
+  bgUrl: '/pm.png',
 };
