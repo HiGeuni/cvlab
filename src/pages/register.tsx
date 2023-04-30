@@ -1,3 +1,5 @@
+import SignupForm from '../components/SignupForm';
+
 const Register = () => {
   return (
     <>
@@ -6,7 +8,9 @@ const Register = () => {
         style={{
           backgroundImage: `url(../../public/bg.png)`,
         }}
-      ></div>
+      >
+        <SignupForm />
+      </div>
     </>
   );
 };
