@@ -1,4 +1,4 @@
-const { useState } = require('react');
+import { useState } from 'react';
 
 export const useInput = () => {
   const [value, setValue] = useState();
