@@ -3,6 +3,7 @@ import Button from './Button';
 const CandidateList = () => {
   return (
     <>
+      {/* <Container></Container> */}
       <Button data={'김연수'} flag={true} />
       <Button data={'김연수'} flag={true} />
       <Button data={'김연수'} flag={true} />

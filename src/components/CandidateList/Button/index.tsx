@@ -5,15 +5,11 @@ interface IButton {
 }
 
 const Button = ({ data, onClick, flag }: IButton) => {
-  return (
-    <button
-      className={`bg-none border-none bg-[${
-        flag ? '#d6ebf0' : '#fbf5df'
-      }] text-[#463635] font-bold mb-8 rounded-full`}
-    >
-      {data}
-    </button>
-  );
+  const buttonClassName = `bg-none border-none text-[#463635] font-bold mb-8 rounded-2xl ${
+    flag ? 'bg-[#d6ebf0]' : 'bg-[#FBF5DF]'
+  }`;
+
+  return <button className={buttonClassName}>{data}</button>;
 };
 
 export default Button;
