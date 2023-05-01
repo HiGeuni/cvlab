@@ -1,3 +1,5 @@
+import { StyledButton } from './style';
+
 interface IButton {
   data: string;
   onClick?: (e: any) => {};
@@ -6,14 +8,9 @@ interface IButton {
 
 const Button = ({ data, onClick, flag }: IButton) => {
   return (
-    <button
-      className={` w-[350px] bg-none border-none text-[#463635] font-bold mb-8 rounded-2xl py-4 ${
-        flag ? 'bg-[#d6ebf0]' : 'bg-[#FBF5DF]'
-      }`}
-      onClick={onClick}
-    >
+    <StyledButton flag={flag} onClick={onClick}>
       {data}
-    </button>
+    </StyledButton>
   );
 };
 

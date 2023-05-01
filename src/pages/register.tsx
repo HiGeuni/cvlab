@@ -1,18 +1,26 @@
 import SignupForm from '../components/SignupForm';
+import styled from '@emotion/styled';
 
 const Register = () => {
   return (
     <>
-      <div
-        className="w-full h-full bg-cover bg-center bg-no-repeat"
+      <StyledDiv
         style={{
           backgroundImage: `url(../../public/bg.png)`,
         }}
       >
         <SignupForm />
-      </div>
+      </StyledDiv>
     </>
   );
 };
 
 export default Register;
+
+const StyledDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+`;

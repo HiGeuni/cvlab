@@ -19,6 +19,5 @@ export const useTime = () => {
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
-
   return { curTime, curDate, isPM };
 };

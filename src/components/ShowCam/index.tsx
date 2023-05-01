@@ -1,4 +1,9 @@
 import { useEffect, useRef } from 'react';
+import styled from '@emotion/styled';
+
+const StyledVideo = styled.video`
+  transform: scaleX(-1);
+`;
 
 function Camera(): JSX.Element {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -21,7 +26,7 @@ function Camera(): JSX.Element {
 
   return (
     <div>
-      <video ref={videoRef} width="100%" autoPlay></video>
+      <StyledVideo ref={videoRef} width="100%" autoPlay></StyledVideo>
     </div>
   );
 }

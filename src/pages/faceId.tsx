@@ -1,34 +1,77 @@
+import { css } from '@emotion/css';
+import Background from '../components/Background';
 import CandidateList from '../components/CandidateList';
 import Camera from '../components/ShowCam';
 import { useTime } from '../hooks/useTime';
+import styled from '@emotion/styled';
 
 const FaceID = () => {
   const { curTime, curDate } = useTime();
   return (
-    <div
-      className="flex w-full h-full text-5xl justify-items-center"
-      style={{
-        backgroundImage: `url(/bg.png)`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="absolute inset-0 bg-black opacity-10 z-10"></div>
-      <div className="flex h-full w-[30%] items-center font-bold z-20">
-        <div className="w-full z-10 text-[#463635]">
-          <div className="leading-relaxed">{curDate}</div>
-          <div className="leading-relaxed">{curTime}</div>
-        </div>
-      </div>
-      <div className="flex h-full w-[40%] items-center justify-center z-20">
-        <Camera />
-      </div>
-      <div className="flex h-full w-[30%] items-center justify-center z-20">
-        <CandidateList />
-      </div>
-    </div>
+    <>
+      <Background bgURL="/bg.png" />
+      <TransparentBG />
+      <Container>
+        <SideContainer>
+          <TimeContainer>
+            <div className="leading-relaxed">{curDate}</div>
+            <div className="leading-relaxed">{curTime}</div>
+          </TimeContainer>
+        </SideContainer>
+        <CameraContainer>
+          <Camera />
+        </CameraContainer>
+        <SideContainer>
+          <CandidateList />
+        </SideContainer>
+      </Container>
+    </>
   );
 };
 
 export default FaceID;
+
+const Container = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 3rem;
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TransparentBG = styled.div`
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  opacity: 0.1;
+  z-index: 5;
+`;
+
+const ContainerCSS = css`
+  display: flex;
+  height: 100%;
+  align-items: center;
+  font-weight: 700;
+`;
+
+const SideContainer = styled.div`
+  ${ContainerCSS};
+  width: 27%;
+`;
+
+const CameraContainer = styled.div`
+  ${ContainerCSS};
+  width: 46%;
+`;
+
+const TimeContainer = styled.div`
+  width: 100%;
+  z-index: 10;
+  font-weight: 700;
+  color: #463535;
+`;

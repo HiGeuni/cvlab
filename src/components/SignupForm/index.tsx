@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useInput } from '../../hooks/useInput';
+import {
+  FormContainer,
+  ImageContainer,
+  LabelConatiner,
+  StyledForm,
+  StyledImage,
+} from './style';
+
+// localhost:8000/attendence/members/sign_up
 
 const SignupForm = () => {
   const id = useInput();
@@ -27,48 +36,44 @@ const SignupForm = () => {
   };
 
   return (
-    <div className="flex h-full justify-center items-center text-2xl">
-      <form className="flex flex-col w-6/12 gap-y-8">
-        <div className="flex flex-col items-start ">
+    <FormContainer>
+      <StyledForm>
+        <LabelConatiner>
           <label>ID</label>
           <input
-            className="w-full"
             value={id.value}
             onChange={id.onChangeValue}
             placeholder="ID"
           />
-        </div>
-        <div className="flex flex-col items-start ">
+        </LabelConatiner>
+        <LabelConatiner>
           <label>PIN</label>
           <input
-            className="w-full"
             value={pin.value}
             onChange={pin.onChangeValue}
             placeholder="PIN"
           />
-        </div>
-        <div
-          className="w-full h-80 bg-white"
+        </LabelConatiner>
+        <ImageContainer
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           isDragOver={isDragOver}
         >
           {selectedImage ? (
-            <img
+            <StyledImage
               alt="selectedImage"
               src={URL.createObjectURL(selectedImage)}
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           ) : (
             <>
               <div> Drag and Drop Image </div>
             </>
           )}
-        </div>
+        </ImageContainer>
         <button>Submit</button>
-      </form>
-    </div>
+      </StyledForm>
+    </FormContainer>
   );
 };
 
