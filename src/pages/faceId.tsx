@@ -9,18 +9,7 @@ import useSocket from '../hooks/useSocket';
 
 const FaceID = () => {
   const { curTime, curDate } = useTime();
-  const [socket, disconnect] = useSocket('faceId');
   const [candidate, setCandidate] = useState([]);
-
-  useEffect(() => {
-    if (socket) {
-      socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        setCandidate(data);
-      };
-    }
-    // return () => disconnect();
-  }, [socket]);
 
   return (
     <>
@@ -34,7 +23,7 @@ const FaceID = () => {
           </TimeContainer>
         </SideContainer>
         <CameraContainer>
-          <Camera socket={socket} />
+          <Camera />
         </CameraContainer>
         <SideContainer>
           <CandidateList />

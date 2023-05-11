@@ -1,7 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import axios from 'axios';
 
-function Camera({ socket }: { socket: any }): JSX.Element {
+const INTERVAL = 100; // 0.1ms
+
+function Camera(): JSX.Element {
+  const [image, setImage] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -27,30 +31,32 @@ function Camera({ socket }: { socket: any }): JSX.Element {
   }, [videoRef]);
 
   useEffect(() => {
-    if (videoRef.current && socket) {
-      const video = videoRef.current;
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+    const intervalId = setInterval(() => {
+      if (videoRef.current) {
+        const canvas = document.createElement('canvas');
+        canvas.width = videoRef.current?.videoWidth ?? 0;
+        canvas.height = videoRef.current?.videoHeight ?? 0;
 
-      const sendFrame = () => {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctx?.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const ctx = canvas.getContext('2d');
+        ctx?.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+
         canvas.toBlob((blob) => {
-          if (blob) {
-            socket.send(blob);
-          }
-        }, 'image/jpeg');
-        setTimeout(sendFrame, 100);
-      };
+          const formData = new FormData();
+          formData.append('image', blob, 'image.png');
 
-      sendFrame();
-    }
-  }, [socket, videoRef]);
+          axios
+            .post('http://localhost:8000/attendance/face_recognition', formData)
+            .then((response) => {
+              console.log('Image uploaded successfully!');
+            });
+        }, 'image/png');
+      }
+    }, INTERVAL);
 
-  const SendMessageToServer = () => {
-    socket?.send("{ value: 'asdf' }");
-  };
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [image, videoRef]);
 
   return (
     <div>

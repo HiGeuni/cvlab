@@ -10,9 +10,9 @@ import {
   StyledInput,
   StyledLabel,
 } from './style';
+import axios from 'axios';
 
 // localhost:8000/attendence/members/sign_up
-
 const SignupForm = () => {
   const id = useInput();
   const pin = useInput();
