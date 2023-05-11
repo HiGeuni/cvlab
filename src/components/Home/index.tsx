@@ -14,7 +14,7 @@ const HomeComponent = ({ isPM, curTime, curDate }: IProps) => {
       <MarginDiv>{curTime}</MarginDiv>
       <FlexDiv>
         <StyledBtn isPM={isPM}>
-          <Link to="/faceId">출석 / 퇴근</Link>
+          <Link to="/faceId">출입</Link>
         </StyledBtn>
         <ToRegister isPM={isPM}>
           회원이 아니신가요?

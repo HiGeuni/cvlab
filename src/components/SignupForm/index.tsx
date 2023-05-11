@@ -4,8 +4,11 @@ import {
   FormContainer,
   ImageContainer,
   LabelConatiner,
+  StyledButton,
   StyledForm,
   StyledImage,
+  StyledInput,
+  StyledLabel,
 } from './style';
 
 // localhost:8000/attendence/members/sign_up
@@ -38,22 +41,22 @@ const SignupForm = () => {
   return (
     <FormContainer>
       <StyledForm>
+        <StyledLabel>기본 정보</StyledLabel>
         <LabelConatiner>
-          <label>ID</label>
-          <input
+          <StyledInput
             value={id.value}
             onChange={id.onChangeValue}
             placeholder="ID"
           />
         </LabelConatiner>
         <LabelConatiner>
-          <label>PIN</label>
-          <input
+          <StyledInput
             value={pin.value}
             onChange={pin.onChangeValue}
             placeholder="PIN"
           />
         </LabelConatiner>
+        <StyledLabel>얼굴 정보</StyledLabel>
         <ImageContainer
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
@@ -71,7 +74,7 @@ const SignupForm = () => {
             </>
           )}
         </ImageContainer>
-        <button>Submit</button>
+        <StyledButton>Submit</StyledButton>
       </StyledForm>
     </FormContainer>
   );

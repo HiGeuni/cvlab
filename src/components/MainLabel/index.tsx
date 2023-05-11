@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const MainLabel = ({ isPM }: IProps) => {
-  return <Label isPM={isPM}> CVLAB 출입관리</Label>;
+  return <Label isPM={isPM}> 얼굴인식 출입관리 시스템</Label>;
 };
 
 export default MainLabel;

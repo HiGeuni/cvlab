@@ -4,9 +4,24 @@ import CandidateList from '../components/CandidateList';
 import Camera from '../components/ShowCam';
 import { useTime } from '../hooks/useTime';
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
+import useSocket from '../hooks/useSocket';
 
 const FaceID = () => {
   const { curTime, curDate } = useTime();
+  const [socket, disconnect] = useSocket('faceId');
+  const [candidate, setCandidate] = useState([]);
+
+  useEffect(() => {
+    if (socket) {
+      socket.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        setCandidate(data);
+      };
+    }
+    // return () => disconnect();
+  }, [socket]);
+
   return (
     <>
       <Background bgURL="/bg.png" />
@@ -19,7 +34,7 @@ const FaceID = () => {
           </TimeContainer>
         </SideContainer>
         <CameraContainer>
-          <Camera />
+          <Camera socket={socket} />
         </CameraContainer>
         <SideContainer>
           <CandidateList />
