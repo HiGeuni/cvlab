@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useInput } from '../../hooks/useInput';
 import {
+  FlexDiv,
   FormContainer,
   ImageContainer,
   LabelConatiner,
@@ -41,39 +42,39 @@ const SignupForm = () => {
   return (
     <FormContainer>
       <StyledForm>
-        <StyledLabel>기본 정보</StyledLabel>
-        <LabelConatiner>
+        <FlexDiv>
+          <StyledLabel>기본 정보</StyledLabel>
           <StyledInput
             value={id.value}
             onChange={id.onChangeValue}
             placeholder="ID"
           />
-        </LabelConatiner>
-        <LabelConatiner>
           <StyledInput
             value={pin.value}
             onChange={pin.onChangeValue}
             placeholder="PIN"
           />
-        </LabelConatiner>
-        <StyledLabel>얼굴 정보</StyledLabel>
-        <ImageContainer
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          isDragOver={isDragOver}
-        >
-          {selectedImage ? (
-            <StyledImage
-              alt="selectedImage"
-              src={URL.createObjectURL(selectedImage)}
-            />
-          ) : (
-            <>
-              <div> Drag and Drop Image </div>
-            </>
-          )}
-        </ImageContainer>
+        </FlexDiv>
+        <FlexDiv>
+          <StyledLabel>얼굴 정보</StyledLabel>
+          <ImageContainer
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            isDragOver={isDragOver}
+          >
+            {selectedImage ? (
+              <StyledImage
+                alt="selectedImage"
+                src={URL.createObjectURL(selectedImage)}
+              />
+            ) : (
+              <>
+                <div> Drag and Drop Image </div>
+              </>
+            )}
+          </ImageContainer>
+        </FlexDiv>
         <StyledButton>Submit</StyledButton>
       </StyledForm>
     </FormContainer>

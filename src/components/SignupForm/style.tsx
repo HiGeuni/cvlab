@@ -54,21 +54,32 @@ export const StyledLabel = styled.label`
   color: #593333;
   font-size: 36px;
   font-weight: 600;
-  margin-top: 20px;
   margin-bottom: 20px;
 `;
 
 export const StyledInput = styled.input`
   min-width: 620px;
   font-size: 30px;
-  height: 50px;
+  height: 60px;
   background-color: #fbeded;
   border: none;
   border-radius: 10px;
+  margin-bottom: 1rem;
+  ::-webkit-input-placeholder {
+    text-indent: 1rem;
+  }
 `;
 
 export const StyledButton = styled.div`
   border-radius: 10px;
   width: 620px;
   background-color: #fbeded;
+  margin-top: 1rem;
+`;
+
+export const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 620px;
 `;

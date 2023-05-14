@@ -43,7 +43,6 @@ function Camera(): JSX.Element {
         canvas.toBlob((blob) => {
           const formData = new FormData();
           formData.append('image', blob, 'image.png');
-
           axios
             .post('http://localhost:8000/attendance/face_recognition', formData)
             .then((response) => {
